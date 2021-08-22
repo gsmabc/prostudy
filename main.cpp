@@ -1,3 +1,4 @@
+//进制转换10->n
 #include<iostream>
 #include<string>
 
