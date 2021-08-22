@@ -1,45 +1,22 @@
 #include<iostream>
-//成绩排序
+//鲜花速递
 
 using namespace std;
 
-struct Student {
-	int soc[11];
-	int sum;
-	int count;
-};
-
-bool px(Student a, Student b) {
-	if (a.sum > b.sum) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-int add(Student a, int M) {
-	a.sum = 0;
-	for (int i = 0; i < M; i++) {
-		a.sum += a.soc[i];
-	}
-}
-
 int main() {
-	int n, m, score, sum, ans, max = 1;
+	int n, m, c = 0;
 	cin >> n >> m;
-	for (int i = 1; i <= n; i++) {
-		sum = 0;
-		for (int j = 1; j <= m; j++) {
-			cin >> score;
-			sum += score;
-
-		}
-		if (sum > max) {
-			max = sum;
-			ans = i;
-
+	if (n < 5 * m) {
+		cout << "NO";
+		return 1;
+	}
+	for (int i = 0; i <= m; ++i) {
+		for (int j = 0; j <= m - i; ++j) {
+			if (i * 5 + j * 6 + (m - i - j) * 7 <= n) {
+				c += 1;
+			}
 		}
 	}
-	cout << ans << " " << max;
+	cout << c;
 	return 0;
 }
