@@ -1,33 +1,45 @@
-#include<iostream>;
+#include<iostream>
+//成绩排序
+
 using namespace std;
 
+struct Student {
+	int soc[11];
+	int sum;
+	int count;
+};
+
+bool px(Student a, Student b) {
+	if (a.sum > b.sum) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+int add(Student a, int M) {
+	a.sum = 0;
+	for (int i = 0; i < M; i++) {
+		a.sum += a.soc[i];
+	}
+}
+
 int main() {
-	int n;
-	cin >> n;
-	int a[99][99];
-	int count = 1;
-	for (int i = 0; i < n / 2 + 1; i++) {
-		// up
-		for (int j = i; j < n - i; j++) {
-			a[i][j] = count++;
+	int n, m, score, sum, ans, max = 1;
+	cin >> n >> m;
+	for (int i = 1; i <= n; i++) {
+		sum = 0;
+		for (int j = 1; j <= m; j++) {
+			cin >> score;
+			sum += score;
+
 		}
-		// right
-		for (int j = i + 1; j < n - i; j++) {
-			a[j][n - i - 1] = count++;
-		}
-		// down
-		for (int j = n - i - 2; j >= i; j--) {
-			a[n - i - 1][j] = count++;
-		}
-		// left
-		for (int j = n - i - 2; j > i; j--) {
-			a[j][i] = count++;
+		if (sum > max) {
+			max = sum;
+			ans = i;
+
 		}
 	}
-	for (int i = 0; i < n; ++i) {
-		for (int j = 0; j < n - 1; ++j)
-			cout << a[i][j] << " ";
-		cout << a[i][n - 1] << endl;
-	}
+	cout << ans << " " << max;
 	return 0;
 }
