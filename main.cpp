@@ -1,27 +1,29 @@
-//n->10
-#include <stdio.h>
-#include <string.h>
-#include <cmath>
+//反之矩阵
 #include <iostream>
-
 using namespace std;
-
-int to_Ten(char sh[], int r) {
-	int len = strlen(sh), n = 0;
-	double sum = 0, k;
-	for (int i = len - 1; i >= 0; i--) {
-		if (sh[i] >= 'A')k = (sh[i] - '7') * pow(r * 1.0, n++);
-		else k = (sh[i] - '0') * pow(r * 1.0, n++);
-		sum += k;
-	}
-	printf("%.0lf\n", sum);
-}
-
+int a[11][11];
 int main() {
-	char a[1001];
-	cin.getline(a, 1000);
-	int n;
-	cin >> n;
-	to_Ten(a, n);
+	int N, count = 1;
+	cin >> N;
+	for (int i = N - 1; i >= 0; i--) {
+		if (i % 2 == 1) {
+			for (int j = N - 1; j >= 0; j--) {
+				a[i][j] = count++;
+
+			}
+		} else {
+			for (int j = 0; j < N; ++j) {
+				a[i][j] = count++;
+
+			}
+		}
+	}
+	for (int i = 0; i < N; ++i) {
+		for (int j = 0; j < N; ++j) {
+			cout << a[i][j] << " ";
+
+		}
+		cout << endl;
+	}
 	return 0;
 }
