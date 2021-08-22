@@ -1,7 +1,18 @@
 #include <iostream>
-//first 模板
+//辗转相除法
 using namespace std;
-int main() {
 
+int gcd(int a, int b) {
+	if (b == 0) {
+		return a;
+	} else {
+		return gcd(b, a % b);
+	}
+}
+
+int main() {
+	int a, b;
+	cin >> a >> b;
+	cout << a * b / gcd(a, b);
 	return 0;
 }
