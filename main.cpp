@@ -1,36 +1,27 @@
-//进制转换10->n
-#include<iostream>
-#include<string>
+//n->10
+#include <stdio.h>
+#include <string.h>
+#include <cmath>
+#include <iostream>
 
 using namespace std;
 
-string MtoN(int m, int n) {
-	char table[16];       //依次表示01234...9ABCDEF（表示0~15）
-	if (m < 0)               //负数转换为正数
-		m = m * (-1);
-	for (int i = 0; i < 16; i++) {
-		if (i < 10)
-			table[i] = i + '0';       //转换为字符是是（加）+'0',不能为（减）-'0'.
-		else
-			table[i] = i - 10 + 'A';
+int to_Ten(char sh[], int r) {
+	int len = strlen(sh), n = 0;
+	double sum = 0, k;
+	for (int i = len - 1; i >= 0; i--) {
+		if (sh[i] >= 'A')k = (sh[i] - '7') * pow(r * 1.0, n++);
+		else k = (sh[i] - '0') * pow(r * 1.0, n++);
+		sum += k;
 	}
-	string res;
-	while (m) {
-		int temp = m % n;
-		char t = table[temp];
-		res = t + res;
-		m = m / n;
-	}
-	return res;
+	printf("%.0lf\n", sum);
 }
 
 int main() {
-	int m, n;
-	cin >> m >> n;
-
-	string res = MtoN(m, n);
-	if (m < 0)
-		cout << "-";
-	cout << res << endl;
-
+	char a[1001];
+	cin.getline(a, 1000);
+	int n;
+	cin >> n;
+	to_Ten(a, n);
+	return 0;
 }
