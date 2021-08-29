@@ -1,22 +1,22 @@
 #include<iostream>
-//鲜花速递
+#include <cstring>
+//字符替换
 
 using namespace std;
 
 int main() {
-	int n, m, c = 0;
-	cin >> n >> m;
-	if (n < 5 * m) {
-		cout << "NO";
-		return 1;
+	char s[201];
+	char A, B;
+	gets(s);
+	cin >> A >> B;
+	int n = strlen(s);
+	for (int i = 0; i < n; ++i) {
+		if (s[i] = A)
+			cout << B;
+		else
+			cout << s[i];
+
 	}
-	for (int i = 0; i <= m; ++i) {
-		for (int j = 0; j <= m - i; ++j) {
-			if (i * 5 + j * 6 + (m - i - j) * 7 <= n) {
-				c += 1;
-			}
-		}
-	}
-	cout << c;
+	cout << endl;
 	return 0;
 }
