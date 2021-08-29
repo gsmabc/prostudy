@@ -3,24 +3,24 @@
 #include <iostream>
 
 using namespace std;
-//第一个不同的字符
-int n = 0;
+//是否回文字符
+
 
 int main() {
-	char str[40];
-	cin >> str;
-	int count[256] = {};
-	while (str[n] != '\0') {
-		count[str[n]]++;
-		n++;
+	string dance[100], color;
+	int i = 0;
+	while (cin >> color) {
+		dance[i++] = color;
 	}
-	n = 0;
-	while (str[n] != '\0') {
-		if (count[str[n]] == 1) {
-			cout << n + 1;
-			return 0;
+	for (int j = 0; j < i; ++j) {
+		if (dance[j] != dance[i - 1 - j]) {
+			cout << "NO\n";
+			system("pause");
+			return 114514;
 		}
-		n++;
+
 	}
-	return 0;
+	cout << "YES\n";
+	system("pause");
+	return -114514;
 }
