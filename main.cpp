@@ -1,21 +1,26 @@
-#include<iostream>
-#include <cstring>
-//小写转大写
+#include<cstring>
+#include<string>
+#include <iostream>
 
 using namespace std;
+//第一个不同的字符
+int n = 0;
 
 int main() {
-	char s[201];
-
-	gets(s);
-	int n = strlen(s);
-	for (int i = 0; i < n; ++i) {
-		if (s[i] >= 90)
-			cout << char(s[i] - 32);
-		else
-			cout << s[i];
-
+	char str[40];
+	cin >> str;
+	int count[256] = {};
+	while (str[n] != '\0') {
+		count[str[n]]++;
+		n++;
 	}
-	cout << endl;
+	n = 0;
+	while (str[n] != '\0') {
+		if (count[str[n]] == 1) {
+			cout << n + 1;
+			return 0;
+		}
+		n++;
+	}
 	return 0;
 }
