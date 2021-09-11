@@ -2,30 +2,29 @@
 #include <string>
 
 using namespace std;
-//身高排序
-struct student {
-	int height;
+//最近的车站
+struct info {
 	string name;
+	double dis;
 };
 
-student max_Height(student a[], int n) {
-	int max = 1;
+void min_dis(info a[], int n) {
+	int m = 1;
 	for (int i = 1; i <= n; i++) {
-		if (a[i].height > a[max].height) {
-			max = i;
-		}
+		if (a[i].dis < a[m].dis)m = i;
 	}
-	return a[max];
+	cout << a[m].name << " " << a[m].dis << endl;
 }
 
 int main() {
+	info a[11];
 	int n;
-	student a[101];
-	cin >> n;
-	for (int i = 1; i <= n; i++) {
-		cin >> a[i].name >> a[i].height;
+	for (int i = 1; i <= 3; i++) {
+		cin >> n;
+		for (int j = 1; j <= n; j++) {
+			cin >> a[j].name >> a[j].dis;
+		}
+		min_dis(a, n);
 	}
-	student s = max_Height(a, n);
-	cout << s.name << ' ' << s.height;
 	return 0;
 }
