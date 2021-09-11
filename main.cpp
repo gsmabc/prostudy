@@ -1,35 +1,31 @@
-#include<cstring>
-#include<string>
 #include <iostream>
-#include <algorithm>
+#include <string>
 
 using namespace std;
-//通关码
+//身高排序
+struct student {
+	int height;
+	string name;
+};
 
+student max_Height(student a[], int n) {
+	int max = 1;
+	for (int i = 1; i <= n; i++) {
+		if (a[i].height > a[max].height) {
+			max = i;
+		}
+	}
+	return a[max];
+}
 
 int main() {
-	string a;
-	cin >> a;
-	int num = 0, ans = 1;
-	char x;
-	for (int i = 0; i < a.length() - 1; ++i) {
-		if (a[i] != '-') {
-			num++;
-			ans += (a[i] - '0') * num;
-
-		}
-
+	int n;
+	student a[101];
+	cin >> n;
+	for (int i = 1; i <= n; i++) {
+		cin >> a[i].name >> a[i].height;
 	}
-	ans = ans % 11;
-	if (ans == 11) {
-		x = 'X';
-	} else {
-		x = ans + '0';
-	}
-	if (a[a.length() - 1] == x) {
-		cout << "Right";
-	} else {
-		cout << "No";
-	}
-	return -114514;
+	student s = max_Height(a, n);
+	cout << s.name << ' ' << s.height;
+	return 0;
 }
