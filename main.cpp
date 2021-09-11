@@ -1,26 +1,35 @@
 #include<cstring>
 #include<string>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
-//是否回文字符
+//通关码
 
 
 int main() {
-	string dance[100], color;
-	int i = 0;
-	while (cin >> color) {
-		dance[i++] = color;
-	}
-	for (int j = 0; j < i; ++j) {
-		if (dance[j] != dance[i - 1 - j]) {
-			cout << "NO\n";
-			system("pause");
-			return 114514;
+	string a;
+	cin >> a;
+	int num = 0, ans = 1;
+	char x;
+	for (int i = 0; i < a.length() - 1; ++i) {
+		if (a[i] != '-') {
+			num++;
+			ans += (a[i] - '0') * num;
+
 		}
 
 	}
-	cout << "YES\n";
-	system("pause");
+	ans = ans % 11;
+	if (ans == 11) {
+		x = 'X';
+	} else {
+		x = ans + '0';
+	}
+	if (a[a.length() - 1] == x) {
+		cout << "Right";
+	} else {
+		cout << "No";
+	}
 	return -114514;
 }
