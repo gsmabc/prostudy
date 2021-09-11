@@ -1,30 +1,30 @@
 #include <iostream>
 #include <string>
-
 using namespace std;
-//最近的车站
-struct info {
-	string name;
-	double dis;
-};
-
-void min_dis(info a[], int n) {
-	int m = 1;
-	for (int i = 1; i <= n; i++) {
-		if (a[i].dis < a[m].dis)m = i;
+//字符串前N位/反输出
+string str_cut(string str, int n = 0) {
+	string a;
+	if (!n) {
+		for (int i = str.length() - 1; i >= 0; i--) {
+			a += str[i];
+		}
+	} else {
+		for (int i = 0; i < n; i++) {
+			a += str[i];
+		}
 	}
-	cout << a[m].name << " " << a[m].dis << endl;
+	return a;
 }
 
 int main() {
-	info a[11];
-	int n;
-	for (int i = 1; i <= 3; i++) {
+	string str;
+	int n, s;
+	cin >> s >> str;
+	if (s == 1) {
 		cin >> n;
-		for (int j = 1; j <= n; j++) {
-			cin >> a[j].name >> a[j].dis;
-		}
-		min_dis(a, n);
+		cout << str_cut(str, n);
+	} else {
+		cout << str_cut(str);
 	}
 	return 0;
 }
