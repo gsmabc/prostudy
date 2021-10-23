@@ -1,24 +1,22 @@
-//20211023-1
-//求√(n+√(n-1)+√(n-2)+√(n-i)+...+√(x+1))
+//20211023-2
+//块数->刀数
 #include <iostream>
 #include <cmath>
 #include <iomanip>
 
 using namespace std;
 
-double f(double x, int n) {
-	if (n == 1) {
-		return sqrt(x + n);
-	} else {
-		return sqrt(n + f(x, n - 1));
-	}
-
-}
 
 int main() {
-	double a;
+	int a[101] = {1, 2};
 	int n;
-	cin >> a >> n;
-	cout << fixed << setprecision(2) << f(a, n);
+	cin >> n;
+	for (int i = 2; i <= n; i++) {
+		a[i] = a[i - 1] + i;
+		if (a[i] > n) {
+			cout << i;
+			break;
+		}
+	}
 	return 0;
 }
