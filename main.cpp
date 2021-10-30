@@ -1,5 +1,5 @@
-//20211030-1
-//n个小球故意放错
+//20211030-2
+//数塔
 #include <iostream>
 #include <cmath>
 #include <iomanip>
@@ -8,14 +8,25 @@ using namespace std;
 
 
 int main() {
-	int n, f[100];
-	f[1] = 0;
-	f[2] = 1;
-	f[3] = 2;
+	int n;
 	cin >> n;
-	for (int i = 3; i <= n; i++) {
-		f[i] = (i - 1) * (f[i - 1] + f[i - 2]);
+	int a[n + 1][n + 1];
+	for (int i = 1; i <= n; ++i) {
+		for (int j = 1; j <= i; ++j) {
+			cin >> a[i][j];
+		}
 	}
-	cout << f[n];
+	for (int i = n - 1; i >= 1; i--) {
+		for (int j = 1; j <= i; j++) {
+			if (a[i + 1][j] >= a[i + 1][j + 1]) {
+				a[i][j] += a[i + 1][j];
+			} else {
+				a[i][j] += a[i + 1][j + 1];
+			}
+
+		}
+
+	}
+	cout << a[1][1];
 	return 0;
 }
