@@ -1,6 +1,16 @@
-//
+/*usage:
+//#include "tree.h"
+// cnt=0;
+//root=0;
+//root = buildTree(0);
+//inorder(root);
+//cout << endl;
+//postorder(root);
+return 0;
+*/
 // Created by fc on 2021/11/6.
 //
+
 
 #ifndef UNTITLED_TREE_H
 #define UNTITLED_TREE_H
