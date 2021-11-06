@@ -1,5 +1,10 @@
-//211106-1
-//äºŒå‰æ ‘ï¼Œç”¨â€œ.â€ä»£æ›¿ç©ºèŠ‚ç‚¹
+//
+// Created by fc on 2021/11/6.
+//
+
+#ifndef UNTITLED_TREE_H
+#define UNTITLED_TREE_H
+
 #include <iostream>
 
 using namespace std;
@@ -10,7 +15,7 @@ struct node {
 int root = 0, cnt;
 char ch;
 
-//å»ºç«‹äºŒå‰æ ‘
+//½¨Á¢¶ş²æÊ÷
 int buildTree(int bt) {
 	cin >> ch;
 	if (ch == '.') {
@@ -34,7 +39,7 @@ void inorder(int bt) {
 	}
 }
 
-//ååºéå†
+//ºóĞò±éÀú
 void postorder(int bt) {
 	if (bt) {
 		postorder(data[bt].left);
@@ -52,3 +57,5 @@ int main() {
 	postorder(root);
 	return 0;
 }
+
+#endif //UNTITLED_TREE_H
