@@ -1,12 +1,25 @@
 #include<iostream>
+
 using namespace std;
-int main() {
-	int num, i, sum = 0;
-	for (i = 0; i < 25; i++) {
-		cin >> num;
-		sum += num;
+
+void divisio_algorithm(int x, int y) {
+	int m = x, n = y, c, t;
+	if (m < n) {
+		t = m;
+		m = n;
+		n = t;
 	}
-	sum = 182 - sum;
-	cout << sum;
+	while (c = m % n) {
+		m = n;
+		n = c;
+	}
+	cout << n << endl;
+	cout << x * y / n << endl;
+}
+
+int main() {
+	int a, b;
+	cin >> a >> b;
+	divisio_algorithm(a, b);
 	return 0;
 }
