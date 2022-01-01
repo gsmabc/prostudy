@@ -1,36 +1,22 @@
 #include <iostream>
+
 using namespace std;
 
-bool is_prime(int a) {
-	if (a <= 1) return false;
-	if (a == 2) return true;
-	for (int i = 2; i * i <= a; i++) {
-		if (a % i == 0)return false;
-	}
-	return true;
-}
-
 int main() {
-	int n;
-	while (cin >> n && n != 0) {
-		int m = 0, sum = 0, k, a[101] = {};
-		for (int i = 1; i <= n; i++) {
-			cin >> k;
-			sum += ((m - k) > 0 ? (m - k) * 4 : (k - m) * 6) + 5;
-			if (is_prime(sum + k)) a[k] = 1;
-			m = k;
+	int n, m, p[10000] = {}, b[10000] = {};
+	cin >> n >> m;
+	for (int k = 1; k <= 2 * n; k++)
+		p[k] = k;
+	for (int i = 1; i <= m; i++) {
+		for (int k = 1; k <= n; k++) {
+			b[2 * k] = p[k];
+			b[2 * k - 1] = p[n + k];
 		}
-		bool flag = false;
-		for (int i = 1; i <= 100; i++) {
-			if (a[i] == 1) {
-				flag = true;
-				cout << i << ' ';
-				if (is_prime(sum + k))a[k] = 1;
-
-			}
-		}
-		if (!flag) cout << "No";
-		cout << endl;
+		for (int k = 1; k <= 2 * n; k++)
+			p[k] = b[k];
+	}
+	for (int k = 1; k <= 2 * n; k++) {
+		cout << p[k] << ' ';
 	}
 	return 0;
 }
