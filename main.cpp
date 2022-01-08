@@ -1,52 +1,30 @@
-#include <iostream>
+#include<iostream>
 
 using namespace std;
-int t[3] = {1, 2, 3};
-
-void setDice(const char d) {
-	int u, f, r;
-	switch (d) {
-		case 'R':
-			u = 7 - t[2];
-			f = t[1];
-			r = t[0];
-			break;
-		case 'D':
-			u = 7 - t[1];
-			f = t[0];
-			r = t[2];
-			break;
-		case 'L':
-			u = t[2];
-			f = t[1];
-			r = 7 - t[0];
-			break;
-	}
-	t[0] = u;
-	t[1] = f;
-	t[2] = r;
-}
+int a[105][105];
 
 int main() {
-	int r, c, sum = 0;
-	bool flag = true;
-	cin >> r >> c;
-	for (int i = 1; i <= r; i++) {
-		if (flag) {
-			for (int j = 1; j < c; j++) {
-				sum += t[0];
-				setDice('R');
-			}
-		} else {
-			for (int j = c; j > 1; j--) {
-				sum += t[0];
-				setDice('L');
-			}
-		}
-		sum += t[0];
-		setDice('D');
-		flag = !flag;
+	int n, m, b, c, sum = 0;
+	cin >> n;
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= n; j++)
+			a[i][j] = 1;
 	}
-	cout << sum;
+	cin >> m;
+	for (int i = 1; i <= m; i++) {
+		cin >> b >> c;
+		a[b][c] = 0;
+		a[b + 1][c] = 0;
+		a[b][c + 1] = 0;
+		a[b + 1][c + 1] = 0;
+	}
+
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= n; j++) {
+			if (a[i][j] == 1)
+				sum++;
+		}
+	}
+	cout << sum << endl;
 	return 0;
 }
