@@ -1,30 +1,32 @@
 #include<iostream>
 
 using namespace std;
-int a[105][105];
+int n, m;
+int vist[200], a[200];
 
-int main() {
-	int n, m, b, c, sum = 0;
-	cin >> n;
-	for (int i = 1; i <= n; i++) {
-		for (int j = 1; j <= n; j++)
-			a[i][j] = 1;
+void print() {
+	for (int i = 1; i <= m; ++i) {
+		cout << a[i] << " ";
 	}
-	cin >> m;
-	for (int i = 1; i <= m; i++) {
-		cin >> b >> c;
-		a[b][c] = 0;
-		a[b + 1][c] = 0;
-		a[b][c + 1] = 0;
-		a[b + 1][c + 1] = 0;
-	}
+	cout << endl;
+}
 
+void dfs(int x) {
 	for (int i = 1; i <= n; i++) {
-		for (int j = 1; j <= n; j++) {
-			if (a[i][j] == 1)
-				sum++;
+		if (i > a[x - 1] && !vist[i]) {
+			vist[i] = 1;
+			a[x] = i;
+			if (x == m) {
+				print();
+			} else
+				dfs(x + 1);
+			vist[i] = 0;
 		}
 	}
-	cout << sum << endl;
+}
+
+int main() {
+	cin >> n >> m;
+	dfs(1);
 	return 0;
 }
