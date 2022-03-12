@@ -1,32 +1,55 @@
-#include<iostream>
+﻿#include <iostream>
+#include <cstring>
 
 using namespace std;
-int n, m;
-int vist[200], a[200];
+char a[101], s[101];
+int len, i;
+int top = 0;
 
-void print() {
-	for (int i = 1; i <= m; ++i) {
-		cout << a[i] << " ";
+void push(char x) {
+	if (top < 100) {
+		top++;
+		s[top] = x;
+		return;
 	}
-	cout << endl;
 }
 
-void dfs(int x) {
-	for (int i = 1; i <= n; i++) {
-		if (i > a[x - 1] && !vist[i]) {
-			vist[i] = 1;
-			a[x] = i;
-			if (x == m) {
-				print();
-			} else
-				dfs(x + 1);
-			vist[i] = 0;
-		}
+void pop() {
+	if (top > 0) {
+		top--;
 	}
+}
+
+char getTop() {
+	return s[top];
 }
 
 int main() {
-	cin >> n >> m;
-	dfs(1);
+	cin >> a;
+	len = strlen(a);
+	for (i = 0; i < len; i++) {
+		if (a[i] == '[') {
+			if (getTop() != '(') {
+				push(a[i]);
+			} else {
+				cout << "NO";
+				return 0;
+			}
+		} else if (a[i] == '(') {
+			push(a[i]);
+		} else if (a[i] == ')' && s[top] == '(') {
+			pop();
+		} else if (a[i] == ']' && s[top] == '[') {
+			pop();
+		} else {
+			cout << "NO";
+			return 0;
+		}
+	}
+	if (top == 0) {
+		cout << "YES";
+	} else {
+		cout << "NO";
+	}
 	return 0;
 }
