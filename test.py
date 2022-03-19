@@ -3,7 +3,7 @@ import random
 import numpy as np
 from pylab import mpl
 
-mpl.rcParams['font.sans-serif'] = ['SimHei']
+mpl.rcParams['font.sans-serif'] = ['汉仪文黑-85W Heavy']
 
 random.seed(0)
 data1 = []
@@ -11,7 +11,7 @@ data2 = []
 n = 10000
 epoches = 2000
 prob = 0.006
-prob_trans = 0.01435
+prob_trans = 0.016
 
 for i in range(n):
     curcnt = 0
@@ -31,7 +31,7 @@ plt.subplot(121)
 plt.hist(data1, bins=np.linspace(10, 50, 20), density=False)
 plt.xlim(10, 50)
 plt.ylim(0, 4000)
-plt.title('90次保底情况')
+plt.title('90')
 
 for i in range(n):
     curcnt = 0
@@ -45,5 +45,5 @@ plt.subplot(122)
 plt.hist(data2, bins=np.linspace(10, 50, 20), density=False)
 plt.xlim(10, 50)
 plt.ylim(0, 4000)
-plt.title('无90次保底情况(基础概率已经过转换)')
+plt.title('no90')
 plt.show()
