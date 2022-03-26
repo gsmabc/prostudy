@@ -1,23 +1,27 @@
 ﻿#include<iostream>
+#include <queue>
 
 using namespace std;
-string q[101];
-int f = 1, r = 1;
+queue<int> a;
+int q[1001];
 
 int main() {
-	char ch;
-	while (cin >> ch) {
-		if (ch == 'B') {
-			cin >> q[r];
-			r++;
-		} else {
-			if (f != r) {
-				cout << "-" << q[f] << endl;
-				f++;
-			} else {
-				cout << "-None" << endl;
-			}
-		}
+	int n, m, front = 0, rear = 0, x, ans;
+	cin >> n >> m;
+	for (int i = 0; i < n; i++) {
+		q[i] = i + 1;
 	}
+	rear = n;
+	while (rear != front) {
+		for (int i = 1; i < m; i++) {
+			x = q[front];
+			front = (front + 1) % n;
+			q[rear] = x;
+			rear = (rear + 1) % n;
+		}
+		ans = q[front];
+		front = (front + 1) % n;
+	}
+	cout << ans << endl;
 	return 0;
 }
