@@ -1,27 +1,32 @@
 ﻿#include<iostream>
-#include <queue>
+#include<algorithm>
 
 using namespace std;
-queue<int> a;
-int q[1001];
+struct things {
+	string name;
+	double weight;
+};
+
+bool cmp(things a, things b) {
+	return a.weight < b.weight;
+}
 
 int main() {
-	int n, m, front = 0, rear = 0, x, ans;
-	cin >> n >> m;
+	things w1[101];
+	int c, n;
+	cin >> c >> n;
+	for (int i = 0; i < n; i++)
+		cin >> w1[i].name >> w1[i].weight;
+	sort(w1, w1 + n, cmp);
+	int sum = 0, count = 0;
 	for (int i = 0; i < n; i++) {
-		q[i] = i + 1;
+		sum += w1[i].weight;
+		if (sum <= c) {
+			count++;
+		} else
+			break;
 	}
-	rear = n;
-	while (rear != front) {
-		for (int i = 1; i < m; i++) {
-			x = q[front];
-			front = (front + 1) % n;
-			q[rear] = x;
-			rear = (rear + 1) % n;
-		}
-		ans = q[front];
-		front = (front + 1) % n;
-	}
-	cout << ans << endl;
+	for (int i = 0; i < count; i++)
+		cout << w1[i].name << " ";
 	return 0;
 }
